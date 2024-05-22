@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const mySchema =new mongoose.Schema({
-    Category:[{
+const mySchema = new mongoose.Schema({
+    category:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Category",
     }],

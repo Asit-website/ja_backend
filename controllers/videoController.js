@@ -1,12 +1,11 @@
-const SubCategory = require("../models/SubCategory");
-
-const postSubCategory = async ({Name,category}) => {
+const Video = require("../models/Video");
+const postVideo = async ({Videourl,category,subCategory}) => {
     try {
-        const categoryi = new SubCategory({
-           Name,category
+        const video = new Video({
+            Videourl,category,subCategory
         });
-        const savedCategory = await categoryi.save();
-        return { status: true, message: 'new subcategory created', data: savedCategory };
+        const savedVideo = await video.save();
+        return { status: true, message: 'new video created', data: savedVideo };
     }
     catch (error) {
         console.log(error);
@@ -17,7 +16,7 @@ const postSubCategory = async ({Name,category}) => {
     }
 }
 
-const getSubCategory = async ({ categoryId }) => {
+const getVideo = async ({ categoryId }) => {
     let and = [];
     if (categoryId && categoryId !== "" && categoryId !== "undefined") {
         and.push({ category: categoryId });
@@ -28,11 +27,12 @@ const getSubCategory = async ({ categoryId }) => {
         return { status: true, data: [] };
     }
 
-    const data = await SubCategory.find({ $and: and });
+    const data = await Video.find({ $and: and });
     return { status: true, data };
 };
 
+
 module.exports = {
-   postSubCategory,
-   getSubCategory
+   postVideo,
+   getVideo
 }
